@@ -1,0 +1,13 @@
+# example config for setting up daemonlogger capture
+# put this in /etc/config/daemonlogger after customizing
+
+# Softflowd emits packets to localhost:9995, but we don't have anything
+# listening there so we use daemonlogger to capture those packets as
+# PCAP files (and we replay them using nfcapd later).
+config capture
+	option interface	'lo'
+	option outputdir	'/data/pcap'
+	option name		'softflowd'
+	option time		'600'
+	option bpf		'udp dst port 9995'
+
